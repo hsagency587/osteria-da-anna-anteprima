@@ -477,6 +477,7 @@ a { color: inherit; }
   .copyright { margin-top: 48px; }
   .timone { right: 16px; bottom: 16px; width: 48px; height: 48px; }
   .timone-instagram { right: 72px; bottom: 18px; }
+  .s-locale .corsivo-titolo { display: block; text-align: center; }   /* telefono (Gabriele, 16/11): "i tuoi sensi" sulla seconda riga, al centro */
   .pesce { width: 80px; height: 51px; }
   .medusa { width: 43px; height: 64px; transform-origin: 21.5px 25.6px; }
   /* telefono (Gabriele, 13/11 sera): onde alte la metà e lunghe come a computer (largo 600% invece di 200%: una cresta ogni
