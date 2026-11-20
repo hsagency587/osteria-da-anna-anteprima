@@ -103,8 +103,8 @@
 .piatti-lista { display: flex; gap: 24px; margin: 40px 0 0; padding: 8px 8px 16px; list-style: none; overflow-x: auto; scroll-snap-type: x proximity; scrollbar-width: thin; scrollbar-color: var(--oro) transparent; }
 .piatti-lista li { flex: 0 0 264px; scroll-snap-align: start; }
 /* Nastro che gira da solo (stile.js, 20/11/2026): niente aggancio, che lo farebbe scattare; ai due lati una sfumatura
-   leggera (32 px) al posto del taglio netto */
-.piatti-lista[data-gira] { scroll-snap-type: none; -webkit-mask-image: linear-gradient(90deg, transparent, #000 32px, #000 calc(100% - 32px), transparent); mask-image: linear-gradient(90deg, transparent, #000 32px, #000 calc(100% - 32px), transparent); }
+   leggera (24 px, il bordo resta al 40%; 20/11 Gabriele: più leggera) al posto del taglio netto */
+.piatti-lista[data-gira] { scroll-snap-type: none; -webkit-mask-image: linear-gradient(90deg, rgba(0,0,0,.4), #000 24px, #000 calc(100% - 24px), rgba(0,0,0,.4)); mask-image: linear-gradient(90deg, rgba(0,0,0,.4), #000 24px, #000 calc(100% - 24px), rgba(0,0,0,.4)); }
 .piatti-lista[data-gira] > li { transform: translateX(var(--resto, 0px)); }
 .piatto-foto { display: block; width: 100%; aspect-ratio: 1; padding: 0; border: 0; background: var(--blu-notte); cursor: zoom-in; outline: 1px solid rgba(184, 152, 88, .9); outline-offset: 7px; margin: 8px 0; width: calc(100% - 16px); margin-left: 8px; }
 .piatto-foto img { width: 100%; height: 100%; object-fit: cover; }
