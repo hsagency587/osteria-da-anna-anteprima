@@ -33,8 +33,8 @@ document.querySelectorAll('[data-salta]').forEach(function (b) {
   b.addEventListener('click', function () { var m = document.getElementById('principale'); if (m) m.focus(); });
 });
 
-// Ricerca: pannello dalla testata con suggerimenti, Invio o "Show All Results" portano a /search?q=….
-// Cerca nelle pagine con l'indice statico /ricerca.json (generato dalle pagine), senza librerie.
+// Ricerca: pannello dalla testata con suggerimenti, Invio o "Show All Results" portano a /osteria-da-anna-anteprima/search?q=….
+// Cerca nelle pagine con l'indice statico /osteria-da-anna-anteprima/ricerca.json (generato dalle pagine), senza librerie.
 (function () {
   var indice;
   var carica = function () { return indice || (indice = fetch('/osteria-da-anna-anteprima/ricerca.json').then(function (r) { return r.json(); })); };
@@ -112,7 +112,7 @@ document.querySelectorAll('[data-salta]').forEach(function (b) {
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !pannello.hidden) chiudi(); });
   }
 
-  // Pagina /search
+  // Pagina /osteria-da-anna-anteprima/search
   var lista = document.querySelector('[data-cerca-lista]');
   if (lista) {
     var q = (new URLSearchParams(location.search).get('q') || '').trim(), pp = parole(q);
@@ -516,7 +516,7 @@ document.querySelectorAll('[data-salta]').forEach(function (b) {
   var W = 0, foto = [];   // foto: riquadri delle cornici in coordinate di pagina [sinistra, destra, sopra, sotto]
   var inAcquario = function (sel, attr, base) {
     return acquario ? [].map.call(acquario.querySelectorAll(sel), function (n) {
-      var c = { n: n, s: document.getElementById(n.getAttribute(attr)), x: null, dietro: 0, attiva: false, soloTel: n.hasAttribute('data-telefono'), lato: n.getAttribute('data-lato'), fetta: (n.getAttribute('data-fetta') || '1/1').split('/').map(Number) };
+      var c = { n: n, s: document.getElementById(n.getAttribute(attr)), x: null, dietro: 0, attiva: false, soloTel: n.hasAttribute('data-telefono'), lato: n.getAttribute('data-lato'), fetta: (n.getAttribute('data-fetta') || '1/1').split('/osteria-da-anna-anteprima/').map(Number) };
       for (var k in base) c[k] = base[k];
       return c;
     }).filter(function (c) { return c.s; }) : [];
@@ -545,7 +545,7 @@ document.querySelectorAll('[data-salta]').forEach(function (b) {
 
   // A telefono (13/11): niente strisce. Ogni animale ha la sua fetta di fascia e ci nuota dentro, anche SOTTO i testi
   // (l'acquario sta sotto il contenuto), ma mai dietro foto, bottoni, pillole, mappe e riquadri: sono ostacoli pieni.
-  var OSTACOLI = '.cornice-foto, .bottone, .mappa, .pillole, .riquadro, .menu-card, .piatti, .indicazioni-lista';
+  var OSTACOLI = '.cornice-foto, .bottone, .mappa, .pillole, .riquadro, .menu-card, .percorso-card, .piatti, .indicazioni-lista';
   var tocca = function (c, x, y) {   // quanto il corpo (cerchio di raggio c.rag) entra nell'ostacolo più vicino; 0 = libero
     var m = 0;
     c.ost.forEach(function (R) { var d = Math.hypot(Math.max(R[0] - x, 0, x - R[1]), Math.max(R[2] - y, 0, y - R[3])); if (d < c.rag) m = Math.max(m, c.rag - d); });
@@ -576,7 +576,7 @@ document.querySelectorAll('[data-salta]').forEach(function (b) {
 
   var misura = function () {
     W = document.documentElement.clientWidth; altoTestata = testata ? testata.offsetHeight : 0;
-    foto = [].map.call(document.querySelectorAll('.cornice-foto, .mappa, .menu-card, .piatti-lista'), function (e) { var r = e.getBoundingClientRect(); return [r.left - 8, r.right + 8, r.top + scrollY - 8, r.bottom + scrollY + 8]; });   // + la cornice oro (7 px fuori)
+    foto = [].map.call(document.querySelectorAll('.cornice-foto, .mappa, .menu-card, .percorso-card, .piatti-lista'), function (e) { var r = e.getBoundingClientRect(); return [r.left - 8, r.right + 8, r.top + scrollY - 8, r.bottom + scrollY + 8]; });   // + la cornice oro (7 px fuori)
     pesci.forEach(function (f) {
       f.top = cima(f.s); f.h = f.s.offsetHeight; f.w2 = f.n.offsetWidth / 2; f.h2 = f.n.offsetHeight / 2;
       if (f.da) f.daFine = cima(f.da) + f.da.offsetHeight;

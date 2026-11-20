@@ -86,8 +86,8 @@ document.querySelectorAll('[data-salta]').forEach(function (b) {
   document.querySelector('[data-scorri-prec]').addEventListener('click', function () { scorri.scrollBy({ left: -passo(), behavior: 'smooth' }); });
 })();
 
-// Ricerca (come Wix: pannello dalla testata con suggerimenti, Invio o "Show All Results" portano a /search?q=…).
-// Cerca nelle 7 pagine con l'indice statico /ricerca.json (generato dalle pagine), senza librerie.
+// Ricerca (come Wix: pannello dalla testata con suggerimenti, Invio o "Show All Results" portano a /osteria-da-anna-anteprima/search?q=…).
+// Cerca nelle 7 pagine con l'indice statico /osteria-da-anna-anteprima/ricerca.json (generato dalle pagine), senza librerie.
 (function () {
   var indice;
   var carica = function () { return indice || (indice = fetch('/osteria-da-anna-anteprima/ricerca.json').then(function (r) { return r.json(); })); };
@@ -165,7 +165,7 @@ document.querySelectorAll('[data-salta]').forEach(function (b) {
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !pannello.hidden) chiudi(); });
   }
 
-  // Pagina /search
+  // Pagina /osteria-da-anna-anteprima/search
   var lista = document.querySelector('[data-cerca-lista]');
   if (lista) {
     var q = (new URLSearchParams(location.search).get('q') || '').trim(), pp = parole(q);
